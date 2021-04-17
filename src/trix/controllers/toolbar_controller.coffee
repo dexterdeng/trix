@@ -9,6 +9,8 @@ class Trix.ToolbarController extends Trix.BasicObject
   activeDialogSelector = "#{dialogSelector}[data-trix-active]"
   dialogButtonSelector = "#{dialogSelector} [data-trix-method]"
   dialogInputSelector = "#{dialogSelector} [data-trix-input]"
+  dialogColorPickerSelector = "#{dialogSelector} input.color-picker__input"
+  dialogClearColorSelector = "#{dialogSelector} .remove_coloring"
 
   constructor: (@element) ->
     @attributes = {}
@@ -19,6 +21,8 @@ class Trix.ToolbarController extends Trix.BasicObject
     handleEvent "mousedown", onElement: @element, matchingSelector: attributeButtonSelector, withCallback: @didClickAttributeButton
     handleEvent "click", onElement: @element, matchingSelector: toolbarButtonSelector, preventDefault: true
     handleEvent "click", onElement: @element, matchingSelector: dialogButtonSelector, withCallback: @didClickDialogButton
+    handleEvent "click", onElement: @element, matchingSelector: dialogColorPickerSelector, withCallback: @didClickDialogColorPickerButton
+    handleEvent "click", onElement: @element, matchingSelector: dialogClearColorSelector, withCallback: @didClickDialogClearColorPickerButton
     handleEvent "keydown", onElement: @element, matchingSelector: dialogInputSelector, withCallback: @didKeyDownDialogInput
 
   # Event handlers
@@ -44,6 +48,23 @@ class Trix.ToolbarController extends Trix.BasicObject
       @delegate?.toolbarDidToggleAttribute(attributeName)
 
     @refreshAttributeButtons()
+
+  didClickDialogColorPickerButton: (event, element) =>
+    dialogElement = findClosestElementFromNode(element, matchingSelector: dialogSelector)
+    method = element.getAttribute("name")
+    color = element.value
+    checked =    element.checked
+
+    if @delegate?.currentAttributes[method] == color
+      checked = false
+      color = null
+
+    @[method].call(this, checked, color, dialogElement)
+
+  didClickDialogClearColorPickerButton: (event, element) =>
+    @delegate?.toolbarDidUpdateAttribute('foregroundColor', null)
+    @delegate?.toolbarDidUpdateAttribute('backgroundColor', null)
+    @hideDialog()
 
   didClickDialogButton: (event, element) =>
     dialogElement = findClosestElementFromNode(element, matchingSelector: dialogSelector)
@@ -125,10 +146,28 @@ class Trix.ToolbarController extends Trix.BasicObject
     for disabledInput in element.querySelectorAll("input[disabled]")
       disabledInput.removeAttribute("disabled")
 
-    if attributeName = getAttributeName(element)
-      if input = getInputForDialog(element, dialogName)
-        input.value = @attributes[attributeName] ? ""
-        input.select()
+    if dialogName == 'x-color'
+      bgColor = @delegate?.currentAttributes?.backgroundColor
+      hasColor = false
+      for bgColorElement in element.querySelectorAll('input[name=backgroundColor]')
+        bgColorElement.checked = (bgColorElement.value == bgColor)
+        hasColor = hasColor || bgColorElement.checked
+
+      frontColor = @delegate?.currentAttributes?.foregroundColor
+      for frontColorElement in element.querySelectorAll('input[name=foregroundColor]')
+        frontColorElement.checked = (frontColorElement.value == frontColor)
+        hasColor = hasColor || frontColorElement.checked
+
+      if hasColor
+        element.querySelector('.remove_coloring').style.display = 'block'
+      else
+        element.querySelector('.remove_coloring').style.display = 'none'
+
+    else
+      if attributeName = getAttributeName(element)
+        if input = getInputForDialog(element, dialogName)
+          input.value = @attributes[attributeName] ? ""
+          input.select()
 
     @delegate?.toolbarDidShowDialog(dialogName)
 
@@ -143,13 +182,21 @@ class Trix.ToolbarController extends Trix.BasicObject
       @delegate?.toolbarDidUpdateAttribute(attributeName, input.value)
       @hideDialog()
 
+  foregroundColor: (checked, color, dialogElement) ->
+    @delegate?.toolbarDidUpdateAttribute('foregroundColor', color)
+    @hideDialog()
+
+  backgroundColor: (checked, color, dialogElement) ->
+    @delegate?.toolbarDidUpdateAttribute('backgroundColor', color)
+    @hideDialog()
+
   removeAttribute: (dialogElement) ->
     attributeName = getAttributeName(dialogElement)
     @delegate?.toolbarDidRemoveAttribute(attributeName)
     @hideDialog()
 
   hideDialog: ->
-    if element = @element.querySelector(activeDialogSelector)
+    for element in @element.querySelectorAll(activeDialogSelector)
       element.removeAttribute("data-trix-active")
       element.classList.remove("trix-active")
       @resetDialogInputs()

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*
 Trix 1.3.1
-Copyright © 2020 Basecamp, LLC
+Copyright © 2021 Basecamp, LLC
 http://trix-editor.org/*/
 trix-editor {
   border: 1px solid #bbb;
@@ -101,6 +101,8 @@ trix-toolbar .trix-button--icon-italic::before {
   background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M10%205v3h2.2l-3.4%208H6v3h8v-3h-2.2l3.4-8H18V5h-8z%22%2F%3E%3C%2Fsvg%3E); }
 trix-toolbar .trix-button--icon-link::before {
   background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M9.88%2013.7a4.3%204.3%200%200%201%200-6.07l3.37-3.37a4.26%204.26%200%200%201%206.07%200%204.3%204.3%200%200%201%200%206.06l-1.96%201.72a.91.91%200%201%201-1.3-1.3l1.97-1.71a2.46%202.46%200%200%200-3.48-3.48l-3.38%203.37a2.46%202.46%200%200%200%200%203.48.91.91%200%201%201-1.3%201.3z%22%2F%3E%3Cpath%20d%3D%22M4.25%2019.46a4.3%204.3%200%200%201%200-6.07l1.93-1.9a.91.91%200%201%201%201.3%201.3l-1.93%201.9a2.46%202.46%200%200%200%203.48%203.48l3.37-3.38c.96-.96.96-2.52%200-3.48a.91.91%200%201%201%201.3-1.3%204.3%204.3%200%200%201%200%206.07l-3.38%203.38a4.26%204.26%200%200%201-6.07%200z%22%2F%3E%3C%2Fsvg%3E); }
+trix-toolbar .trix-button--icon-color::before {
+  background-image: url(data:image/svg+xml,%3Csvg%20height%3D%2224%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16.6%2012l-9-9-1.4%201.4%202.4%202.4-5.2%205.1c-.6.6-.6%201.6%200%202.2L9%2019.6c.3.3.7.4%201.1.4s.8-.1%201-.4l5.6-5.5c.6-.6.6-1.6%200-2.2zM5.2%2013L10%208.2l4.8%204.8zM19%2015.5s-2%202.2-2%203.5c0%201.1.9%202%202%202s2-.9%202-2c0-1.3-2-3.5-2-3.5z%22%20fill%3D%22%23444%22%2F%3E%3C%2Fsvg%3E); }
 trix-toolbar .trix-button--icon-strike::before {
   background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M12.73%2014l.28.14c.26.15.45.3.57.44.12.14.18.3.18.5%200%20.3-.15.56-.44.75-.3.2-.76.3-1.39.3A13.52%2013.52%200%200%201%207%2014.95v3.37a10.64%2010.64%200%200%200%204.84.88c1.26%200%202.35-.19%203.28-.56.93-.37%201.64-.9%202.14-1.57s.74-1.45.74-2.32c0-.26-.02-.51-.06-.75h-5.21zm-5.5-4c-.08-.34-.12-.7-.12-1.1%200-1.29.52-2.3%201.58-3.02%201.05-.72%202.5-1.08%204.34-1.08%201.62%200%203.28.34%204.97%201l-1.3%202.93c-1.47-.6-2.73-.9-3.8-.9-.55%200-.96.08-1.2.26-.26.17-.38.38-.38.64%200%20.27.16.52.48.74.17.12.53.3%201.05.53H7.23zM3%2013h18v-2H3v2z%22%2F%3E%3C%2Fsvg%3E); }
 trix-toolbar .trix-button--icon-quote::before {
@@ -121,6 +123,10 @@ trix-toolbar .trix-button--icon-decrease-nesting-level::before {
   background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M3%2019h19v-2H3v2zm7-6h12v-2H10v2zm-8.3-.3l2.8%202.9L6%2014.2%204%2012l2-2-1.4-1.5L1%2012l.7.7zM3%205v2h19V5H3z%22%2F%3E%3C%2Fsvg%3E); }
 trix-toolbar .trix-button--icon-increase-nesting-level::before {
   background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M3%2019h19v-2H3v2zm7-6h12v-2H10v2zm-6.9-1L1%2014.2l1.4%201.4L6%2012l-.7-.7-2.8-2.8L1%209.9%203.1%2012zM3%205v2h19V5H3z%22%2F%3E%3C%2Fsvg%3E); }
+trix-toolbar .trix-button--icon-decrease-nesting-level {
+  display: none; }
+trix-toolbar .trix-button--icon-increase-nesting-level {
+  display: none; }
 trix-toolbar .trix-dialogs {
   position: relative; }
 trix-toolbar .trix-dialog {
@@ -135,6 +141,31 @@ trix-toolbar .trix-dialog {
   border-top: 2px solid #888;
   border-radius: 5px;
   z-index: 5; }
+  trix-toolbar .trix-dialog.trix-active {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 1rem;
+    background: #fff;
+    box-shadow: 0 0.3rem 1rem #bfbfbf;
+    border-top: 3px solid #cbeefa;
+    border-radius: 0.4rem;
+    z-index: 5; }
+    trix-toolbar .trix-dialog.trix-active.trix-dialog--color {
+      padding: 1rem;
+      left: auto;
+      right: auto;
+      white-space: normal; }
+    trix-toolbar .trix-dialog.trix-active .remove_coloring {
+      display: block;
+      width: 100%;
+      color: #283c46;
+      border: 1px solid #d9d9d9;
+      background: white;
+      padding: 6px 13px;
+      line-height: 20px;
+      border-radius: 2px; }
 trix-toolbar .trix-input--dialog {
   font-size: inherit;
   font-weight: normal;
@@ -163,6 +194,56 @@ trix-toolbar .trix-dialog__link-fields {
   trix-toolbar .trix-dialog__link-fields .trix-button-group {
     flex: 0 0 content;
     margin: 0; }
+
+.color-picker__field {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 2px;
+  cursor: pointer; }
+
+.color-picker__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0; }
+
+.color-picker__input:checked ~ .color-picker__swatch {
+  border-color: #283c46; }
+
+.color-picker__swatch {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 2px; }
+
+.color-picker--for-text-foreground .color-picker__swatch {
+  background-color: rgba(255, 255, 255, 0) !important; }
+
+.color-picker--for-text-background .color-picker__swatch {
+  color: #283c46 !important; }
+
+.color-picker--for-text .color-picker__swatch::before {
+  content: 'Ab';
+  font-size: 16px;
+  color: currentColor !important; }
+
+bc-color-picker .color-picker__field {
+  position: relative;
+  min-width: 1em;
+  min-height: 1em; }
+
+bc-color-picker, bc-color-picker .color-picker__field {
+  display: inline-block; }
+
+trix-toolbar .trix-dialog.trix-active.color_dialog--selection-contains-coloring .color_dialog__hide-unless-selection-contains-coloring {
+  display: block; }
 trix-editor [data-trix-mutable]:not(.attachment__caption-editor) {
   -webkit-user-select: none;
   -moz-user-select: none;

@@ -278,6 +278,7 @@ class Trix.EditorController extends Trix.Controller
   toolbarDidHideDialog: (dialogName) ->
     @thawSelection()
     @editorElement.focus()
+
     @notifyEditorElement("toolbar-dialog-hide", {dialogName})
 
   # Selection

@@ -125,6 +125,7 @@ trix-toolbar {
   .trix-button--icon-bold::before { background-image: $icon-bold; }
   .trix-button--icon-italic::before { background-image: $icon-italic; }
   .trix-button--icon-link::before { background-image: $icon-link; }
+  .trix-button--icon-color::before { background-image: $icon-color; }
   .trix-button--icon-strike::before { background-image: $icon-strike; }
   .trix-button--icon-quote::before { background-image: $icon-quote; }
   .trix-button--icon-heading-1::before { background-image: $icon-heading-1; }
@@ -135,6 +136,8 @@ trix-toolbar {
   .trix-button--icon-redo::before { background-image: $icon-redo; }
   .trix-button--icon-decrease-nesting-level::before { background-image: $icon-nesting-level-decrease; }
   .trix-button--icon-increase-nesting-level::before { background-image: $icon-nesting-level-increase; }
+  .trix-button--icon-decrease-nesting-level { display: none; }
+  .trix-button--icon-increase-nesting-level { display: none; }
 
   .trix-dialogs {
     position: relative;
@@ -152,6 +155,36 @@ trix-toolbar {
     border-top: 2px solid #888;
     border-radius: 5px;
     z-index: 5;
+    &.trix-active{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem 1rem;
+      background: #fff;
+      box-shadow: 0 0.3rem 1rem #bfbfbf;
+      border-top: 3px solid #cbeefa;
+      border-radius: 0.4rem;
+      z-index: 5;
+      &.trix-dialog--color{
+        padding: 1rem;
+        left: auto;
+        right: auto;
+        white-space: normal;
+
+      }
+
+      .remove_coloring{
+        display: block;
+        width: 100%;
+        color:rgb(40, 60, 70);
+        border: 1px solid rgb(217, 217, 217);
+        background: white;
+        padding: 6px 13px;
+        line-height: 20px;
+        border-radius: 2px;
+      }
+    }
   }
 
   .trix-input--dialog {
@@ -195,4 +228,67 @@ trix-toolbar {
       margin: 0;
     }
   }
+}
+.color-picker__field{
+  position: relative;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.color-picker__input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+}
+.color-picker__input:checked ~ .color-picker__swatch {
+    border-color: #283c46;
+}
+
+.color-picker__swatch {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 2px;
+}
+
+.color-picker--for-text-foreground {
+  .color-picker__swatch {
+    background-color: rgba(255,255,255,0) !important;
+  }
+}
+.color-picker--for-text-background {
+  .color-picker__swatch {
+    color: #283c46 !important;
+  }
+}
+
+.color-picker--for-text {
+  .color-picker__swatch::before {
+    content: 'Ab';
+    font-size: 16px;
+    color: currentColor !important;
+  }
+}
+
+bc-color-picker{
+  .color-picker__field {
+    position: relative;
+    min-width: 1em;
+    min-height: 1em;
+  }
+}
+bc-color-picker, bc-color-picker .color-picker__field{
+  display: inline-block;
+}
+trix-toolbar .trix-dialog.trix-active.color_dialog--selection-contains-coloring .color_dialog__hide-unless-selection-contains-coloring {
+    display: block;
 }
