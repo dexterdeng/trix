@@ -71,6 +71,7 @@ Trix.registerElement "trix-editor", do ->
       color: graytext;
       cursor: text;
       pointer-events: none;
+      white-space: pre-line;
     }
 
     %t a[contenteditable=false] {
@@ -145,6 +146,10 @@ Trix.registerElement "trix-editor", do ->
         element = makeElement("trix-toolbar", id: toolbarId)
         @parentNode.insertBefore(element, this)
         element
+
+  form:
+    get: ->
+      @inputElement?.form
 
   inputElement:
     get: ->
@@ -222,7 +227,7 @@ Trix.registerElement "trix-editor", do ->
 
   resetBubbled: (event) ->
     return if event.defaultPrevented
-    return unless event.target is @inputElement?.form
+    return unless event.target is @form
     @reset()
 
   clickBubbled: (event) ->
